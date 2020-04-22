@@ -1,4 +1,7 @@
 import java.util.Arrays;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Schedule {
     //------Ассоциации--------------
@@ -9,25 +12,29 @@ public class Schedule {
     private static Courses course;
     //------------------------------
     private static String[] schedule;
-    private static String[][] scheduleGroup;
 
     private Schedule(String[] schedule) {
         this.schedule = schedule;
     }
 
     public static String[] getSchedule(String[] dataGroup) {
-        new Schedule(new String[]{"20.04.2020", "11:35", "Конструирование ПО", "Убалехт"});
-        String[] groupInfo = {university.getNames()[0],faculty.getNames()[1],
-                institute.getNames()[0],group.getNames()[0],course.getNames()[2]};
-
-        return massiveEquals(dataGroup, groupInfo);
+        new Schedule(getScheduleDataBase(dataGroup));
+        return schedule;
     }
 
-    private static String[] massiveEquals(String[] dataGroup, String[] groupInfo) {
-        if (Arrays.equals(dataGroup, groupInfo)) {
-            return schedule;
-        } else {
-            return new String[]{"нет", "нет", "нет", "нет"};
+    private static String[] getScheduleDataBase(String[] dataGroup) {
+        String[] p = {"нет", "нет", "нет", "нет"};//пустой массив с расписанием
+        try (Scanner sc = new Scanner(new File("dataBaseSchedule.txt"))) {
+            while (sc.hasNext()) {
+                String[] split1 = sc.nextLine().split(";");
+                String[] split2 = split1[0].split(",");
+                String[] split3 = split1[1].split(",");
+                if (Arrays.equals(dataGroup, split2)) return split3;
+            }
+            return p;
+        }
+        catch (FileNotFoundException ex) {
+            return p;
         }
     }
 }
