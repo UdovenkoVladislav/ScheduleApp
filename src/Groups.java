@@ -6,7 +6,7 @@ public class Groups {
     }
 
     public static String[] getNames() {
-        new Groups(new String[]{"ПЭ", "ПИ", "ТП"});
+        new Groups(new String[]{"ПЭ", "ПИ", "ТП", "Архитектура"});
         return names;
     }
 }

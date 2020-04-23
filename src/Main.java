@@ -2,6 +2,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class Main {
 
@@ -57,18 +59,12 @@ public class Main {
         panel_data.add(course_1);
         panel_data.add(course);
 
-        String[] columnNames = {
-                "Дата",
-                "Время",
-                "Дисциплина",
-                "Преподаватель"
-        };
-
-        String[][] data = {
-                {"----", "----", "----", "----"}
-        };
-
-        JTable tableSchedule = new JTable(data, columnNames);
+        DefaultTableModel model = new DefaultTableModel();
+        JTable tableSchedule = new JTable(model);
+        model.addColumn("Дата");
+        model.addColumn("Время");
+        model.addColumn("Дисциплина");
+        model.addColumn("Преподаватель");
 
         JScrollPane scrollPane = new JScrollPane(tableSchedule);
 
@@ -82,9 +78,9 @@ public class Main {
                         group.getSelectedItem().toString(),
                         course.getSelectedItem().toString()
                 };
-                String[] sch = scheduleClass.getSchedule(dataGroup);
-                for (int i = 0; i < sch.length; i++) {
-                    tableSchedule.setValueAt(sch[i], 0, i);
+                ArrayList<String[]> sch = scheduleClass.getSchedule(dataGroup);
+                for(String[] sch1 : sch){
+                    model.addRow(sch1);
                 }
             }
         });
