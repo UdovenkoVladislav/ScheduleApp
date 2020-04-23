@@ -1,8 +1,8 @@
 public class Groups {
     private static String[] names;
 
-    private Groups(String[] names) {
-        this.names = names;
+    private Groups(String[] names1) {
+        names = names1;
     }
 
     public static String[] getNames() {

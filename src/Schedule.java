@@ -5,17 +5,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Schedule {
-    //------Ассоциации--------------
-    private static Universities university;
-    private static Faculties faculty;
-    private static Institutes institute;
-    private static Groups group;
-    private static Courses course;
-    //------------------------------
     private static ArrayList<String[]> schedule = new ArrayList<String[]>();
 
-    private Schedule(ArrayList<String[]> schedule) {
-        this.schedule = schedule;
+    private Schedule(ArrayList<String[]> schedule1) {
+        schedule = schedule1;
     }
 
     public static ArrayList<String[]> getSchedule(String[] dataGroup) {

@@ -1,8 +1,8 @@
 public class Courses {
     private static String[] names;
 
-    private Courses(String[] names) {
-        this.names = names;
+    private Courses(String[] names1) {
+        names = names1;
     }
 
     public static String[] getNames() {
